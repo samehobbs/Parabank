@@ -22,3 +22,12 @@ export async function registerUser(page, credential){
    return credential; // if you want it displayed
  
  }
+  // Create a new account
+  export async function createAccount(page){
+
+  await page.getByRole('link', { name: 'Open New Account' }).click();
+  await expect(page.getByRole('heading', { name: 'Open New Account' })).toBeVisible(); // Assert new account page is displayed
+  await page.pause();
+  await page.getByRole('button', { name: 'Open New Account' }).click();  // Click open new account button
+  await expect(page.getByRole('heading', { name: 'Account Opened!' })).toBeVisible();  // Assert new account opened text
+ }
